@@ -5,11 +5,37 @@
 # @IDE     ：PyCharm 
 # @Date    ：2022/10/25 10:46
 import pytest
+import platform
 from selenium import webdriver
 from pages.register_page import RegisterPage
 from pages.login_page import LoginPage
 from pages.feedbackiframe_page import FeedBackIframe
 from pages.users_userinfo import UsersUserInfoPage
+from selenium.webdriver.chrome.options import Options
+
+
+# 下面的方法可以判断当前系统是windows还是linux
+
+@pytest.fixture(scope="session", name="driver")
+def browser():
+    """定义全局driver"""
+    if platform.system() == 'windows':
+        _driver = webdriver.Chrome()
+        _driver.maximize_window()
+
+    else:
+        # linux启动
+        chrome_options = Options()
+        chrome_options.add_argument('--window-size=1920,1080')  # 设置当前窗口的宽度和高度
+        chrome_options.add_argument('--no-sandbox')  # 解决DevToolsActivePort文件不存在报错问题
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--disable-gpu')  # 禁用GPU硬件加速，如果软件渲染器没有就位
+        chrome_options.add_argument('--headless')  # 无界面
+
+        _driver = webdriver.Chrome(chrome_options=chrome_options)
+
+        yield _driver
+        _driver.quit()
 
 
 @pytest.fixture(scope='session',name='driver')
