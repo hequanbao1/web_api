@@ -38,12 +38,12 @@ def browser():
         _driver.quit()
 
 
-@pytest.fixture(scope='session',name='driver')
-def browser():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    yield driver
-    driver.quit()
+# @pytest.fixture(scope='session',name='driver')
+# def browser():
+#     driver = webdriver.Chrome()
+#     driver.maximize_window()
+#     yield driver
+#     driver.quit()
 
 
 @pytest.fixture(scope='session')
