@@ -38,14 +38,6 @@ def browser():
         _driver.quit()
 
 
-# @pytest.fixture(scope='session',name='driver')
-# def browser():
-#     driver = webdriver.Chrome()
-#     driver.maximize_window()
-#     yield driver
-#     driver.quit()
-
-
 @pytest.fixture(scope='session')
 def base_url():
     url = 'http://49.235.92.12:8200'
