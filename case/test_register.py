@@ -14,7 +14,7 @@ class TestRegister():
         register = RegisterPage(driver,base_url)
         register.open('/users/register/')
         # 操作步骤
-        register.input_email('2012652143@qq.com')
+        register.input_email('2012652145@qq.com')
         register.input_password('123456')
         register.click_register_btn()
         actual_result = register.register_success_text()
